@@ -1,0 +1,7 @@
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteRule ^(.*\.xml|robots\.txt|robots|beima)$ index.php [NC,L]
+</IfModule>
